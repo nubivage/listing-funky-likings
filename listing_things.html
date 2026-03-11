@@ -3,236 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Art Journal of Joy</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Patrick+Hand&display=swap" rel="stylesheet">
+<title>nubivage's Litti-Chokha List</title>
 
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
-body{
-margin:0;
-padding:0;
-font-family:'Patrick Hand',cursive;
-background:#f6f1e7;
-background-image:url("https://www.transparenttextures.com/patterns/paper-fibers.png");
-overflow-x:hidden;
-}
+<link rel="stylesheet" href="style.css">
 
-header{
-text-align:center;
-padding:25px;
-font-size:2rem;
-font-family:'Permanent Marker',cursive;
-transform:rotate(-1deg);
-}
-
-.container{
-padding:20px;
-max-width:600px;
-margin:auto;
-}
-
-/* scrapbook card */
-.task{
-background:white;
-padding:15px;
-margin-bottom:18px;
-border-radius:20px;
-box-shadow:4px 6px 0px #00000033;
-border:3px dashed #222;
-transform:rotate(calc(-1deg + 2deg * var(--r)));
-position:relative;
-}
-
-/* crayon scribble border effect */
-.task:before{
-content:"";
-position:absolute;
-inset:-6px;
-border-radius:22px;
-border:4px solid transparent;
-border-image: repeating-linear-gradient(
-45deg,
-#ff0055,
-#ff0055 6px,
-#00aaff 6px,
-#00aaff 12px
-) 1;
-pointer-events:none;
-opacity:0.4;
-}
-
-.taskTop{
-display:flex;
-align-items:center;
-gap:12px;
-font-size:1.3rem;
-}
-
-.icon{
-font-size:2rem;
-cursor:pointer;
-transition:transform .3s ease;
-}
-
-.icon:hover{
-transform:scale(1.2);
-}
-
-/* bloom animation */
-.bloom{
-animation:bloom .6s ease forwards;
-}
-
-@keyframes bloom{
-0%{transform:scale(.3) rotate(-40deg);opacity:0}
-60%{transform:scale(1.2)}
-100%{transform:scale(1) rotate(0);opacity:1}
-}
-
-input,button{
-width:100%;
-padding:12px;
-border-radius:14px;
-border:2px solid #222;
-margin-bottom:10px;
-font-family:'Patrick Hand',cursive;
-font-size:1rem;
-}
-
-button{
-background:#ffe066;
-cursor:pointer;
-box-shadow:3px 4px 0 #00000055;
-}
-
-button:active{
-transform:translateY(2px);
-box-shadow:1px 2px 0 #00000055;
-}
-
-.filePreview img,video{
-width:100%;
-margin-top:10px;
-border-radius:12px;
-}
-
-/* metallic collage stickers */
-.sticker{
-position:fixed;
-font-size:40px;
-filter: drop-shadow(3px 4px 3px #00000055);
-animation:float 6s ease-in-out infinite alternate;
-}
-
-.s1{top:60px;left:10px}
-.s2{top:200px;right:15px}
-.s3{bottom:80px;left:20px}
-
-@keyframes float{
-from{transform:rotate(-10deg) translateY(0)}
-to{transform:rotate(10deg) translateY(15px)}
-}
-
-</style>
 </head>
 
 <body>
 
-<header>🌸 My Joy Scrapbook 🌸</header>
+<header class="title">
+nubivage's Litti-Chokha List
+</header>
 
-<div class="container">
+<div class="collage-layer">
+<div class="metal m1">✶</div>
+<div class="metal m2">✦</div>
+<div class="metal m3">⛓</div>
+<div class="metal m4">☽</div>
+<div class="metal m5">🜏</div>
+</div>
 
-<input id="taskInput" placeholder="something that brings me joy...">
-<input type="file" id="fileInput">
-<button onclick="addTask()">add to journal</button>
+<main class="container">
+
+<div class="inputRow">
+<input id="taskInput" placeholder="write something you want to do">
+<button id="addBtn">add</button>
+</div>
 
 <div id="taskList"></div>
 
-</div>
+</main>
 
-<!-- metallic collage stickers -->
-<div class="sticker s1">✨</div>
-<div class="sticker s2">💿</div>
-<div class="sticker s3">🦋</div>
-
-<script>
-
-function addTask(){
-
-const text=document.getElementById("taskInput").value
-const file=document.getElementById("fileInput").files[0]
-
-if(text==="")return
-
-const card=document.createElement("div")
-card.className="task"
-card.style.setProperty('--r',Math.random())
-
-const top=document.createElement("div")
-top.className="taskTop"
-
-const icon=document.createElement("span")
-icon.className="icon"
-icon.textContent="🌱"
-
-icon.onclick=()=>{
-if(icon.textContent==="🌱"){
-icon.textContent="🌸"
-icon.classList.add("bloom")
-}
-else{
-icon.textContent="🌱"
-icon.classList.remove("bloom")
-}
-}
-
-const label=document.createElement("span")
-label.textContent=text
-
-
-top.appendChild(icon)
-top.appendChild(label)
-
-card.appendChild(top)
-
-if(file){
-const preview=document.createElement("div")
-preview.className="filePreview"
-const url=URL.createObjectURL(file)
-
-if(file.type.startsWith("image")){
-const img=document.createElement("img")
-img.src=url
-preview.appendChild(img)
-}
-
-else if(file.type.startsWith("video")){
-const vid=document.createElement("video")
-vid.src=url
-vid.controls=true
-preview.appendChild(vid)
-}
-
-else if(file.type.startsWith("audio")){
-const aud=document.createElement("audio")
-aud.src=url
-aud.controls=true
-preview.appendChild(aud)
-}
-
-card.appendChild(preview)
-}
-
-
-document.getElementById("taskList").appendChild(card)
-
-document.getElementById("taskInput").value=""
-document.getElementById("fileInput").value=""
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
