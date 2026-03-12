@@ -1,12 +1,10 @@
 body{
 margin:0;
-background:#0a0a0e;
-color:#dcdce3;
+background:#0c0b14;
+color:#f3e9ff;
 font-family:'Special Elite',monospace;
 overflow-x:hidden;
 }
-
-/* grain texture */
 
 body::before{
 content:"";
@@ -20,14 +18,14 @@ pointer-events:none;
 .title{
 text-align:center;
 padding:40px 20px;
-font-size:2.3rem;
+font-size:2.4rem;
 letter-spacing:4px;
 font-family:'UnifrakturCook',serif;
-color:#e8e8ee;
+color:#ff7adf;
 }
 
 .container{
-max-width:700px;
+max-width:750px;
 margin:auto;
 padding:20px;
 }
@@ -35,76 +33,70 @@ padding:20px;
 .inputRow{
 display:flex;
 gap:10px;
-margin-bottom:25px;
+margin-bottom:30px;
 }
 
 input{
 flex:1;
 padding:12px;
-background:#111118;
-border:1px solid #444;
-color:#e2e2e7;
+background:#171327;
+border:1px solid #ff79d0;
+color:#fff;
 }
 
 button{
 padding:12px 18px;
 border:none;
-background:linear-gradient(120deg,#e3e3e6,#7d8088,#ffffff);
+background:linear-gradient(120deg,#ff79d0,#ffa6f0,#ffffff);
 color:black;
 font-weight:bold;
 cursor:pointer;
 }
 
-/* papercut cards */
-
 .task{
-background:#13131a;
-padding:18px;
-margin-bottom:18px;
-
-clip-path:polygon(
-0 12px,12px 0,calc(100% - 12px) 0,100% 12px,
-100% calc(100% - 12px),calc(100% - 12px) 100%,
-12px 100%,0 calc(100% - 12px)
-);
-
-box-shadow:
-0 0 0 1px #000 inset,
-0 10px 20px rgba(0,0,0,.8);
-
-border:1px solid #3c3c46;
+padding:14px 0;
+margin-bottom:14px;
+border-bottom:1px dashed #ff79d066;
 }
 
 .taskTop{
 display:flex;
 align-items:center;
-gap:10px;
+gap:12px;
 }
 
-.icon{
+.symbol{
+width:18px;
+height:18px;
+border-radius:50%;
+border:2px solid #ff79d0;
 cursor:pointer;
-font-size:1.3rem;
+position:relative;
+}
+
+.symbol.done{
+background:radial-gradient(circle,#ff79d0,#ff2fb3);
 }
 
 .attach{
 margin-left:auto;
-color:#666;
+color:#ff79d088;
 cursor:pointer;
 font-size:1.4rem;
 }
 
-.attach:hover{
-color:#d2d2d8;
+.delete{
+color:#ff4d8d;
+cursor:pointer;
+margin-left:10px;
 }
 
 .filePreview img,
 .filePreview video{
 width:100%;
 margin-top:10px;
-border:1px solid #333;
+border-radius:6px;
 }
-
-/* floating metallic collage */
 
 .collage-layer{
 position:fixed;
@@ -112,21 +104,45 @@ inset:0;
 pointer-events:none;
 }
 
-.metal{
+.shape{
 position:absolute;
-font-size:40px;
-color:#d6d7df;
-text-shadow:0 0 8px #ffffff66;
-animation:float 10s ease-in-out infinite alternate;
+mix-blend-mode:screen;
 }
 
-.m1{top:70px;left:5%}
-.m2{top:200px;right:8%}
-.m3{bottom:120px;left:10%}
-.m4{top:50%;right:4%}
-.m5{bottom:80px;right:15%}
+.s1{
+width:140px;
+height:140px;
+background:linear-gradient(45deg,#ff2fb3,#ff9be9);
+top:80px;
+left:8%;
+clip-path:polygon(0 30%,100% 0,70% 100%);
+opacity:.5;
+}
 
-@keyframes float{
-from{transform:rotate(-10deg) translateY(0)}
-to{transform:rotate(10deg) translateY(25px)}
+.s2{
+width:120px;
+height:120px;
+border:3px solid #ff79d0;
+top:240px;
+right:10%;
+transform:rotate(20deg);
+}
+
+.s3{
+width:90px;
+height:90px;
+background:#ff4dcb;
+bottom:140px;
+left:15%;
+clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+}
+
+.s4{
+width:130px;
+height:40px;
+background:linear-gradient(90deg,#ff79d0,#ffffff);
+bottom:90px;
+right:20%;
+transform:rotate(-15deg);
+opacity:.6;
 }
